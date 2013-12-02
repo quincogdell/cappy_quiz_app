@@ -33,6 +33,14 @@ describe "The Home Page" do
     expect(current_path).to eq('/javascript')
   end
 
+  # extra added by quin
+  it "has a link to /quizzes" do
+    find_link('Quizzes').click
+    expect(page).to have_content('calc')
+    expect(current_path).to eq('/quizzes')
+  end
+
+
 end
 
 describe 'A page called JavaScript' do
@@ -77,8 +85,39 @@ describe 'A page called JavaScript' do
 
 end
 
+# extra added by Quin
+describe "a page called Quizzes" do
+
+  before(:each) do
+    visit '/quizzes'
+  end
+
+  it "has an input field and button labeled 'calc'" do
+    expect(page).to have_field('calc')
+  end
+
+  it "has a button labeled 'calc'" do
+    button = page.find('button')
+    label = 'calc'
+    expect(button.has_content?(label)).to be true
+  end
 
 
+  it "does not have a form tag" do
+    expect(page).to have_no_css("form")
+  end
+
+  describe "clicking the calc button with JavaScript enabled", :js => true do
+
+    before(:each) do
+      click_button('calc')
+    end
+
+    it "" do
+    end
+
+  end
+end
 
 
 
