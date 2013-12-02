@@ -39,8 +39,6 @@ describe "The Home Page" do
     expect(page).to have_content('calc')
     expect(current_path).to eq('/quizzes')
   end
-
-
 end
 
 describe 'A page called JavaScript' do
@@ -109,14 +107,27 @@ describe "a page called Quizzes" do
 
   describe "clicking the calc button with JavaScript enabled", :js => true do
 
-    before(:each) do
+
+
+    # it "parses a series of numbers to an array" do
+    #   input = "1,2,3"
+
+    # end
+
+    it "changes the body background to green when the numbers input are in ascending order" do
+      fill_in("calc", with: '1,2,3')
       click_button('calc')
+      expect(page).to have_css('body.green')
     end
 
-    it "" do
+    it "changes the body background to red when the numbers input are in not in ascending order" do
+      fill_in("calc", with: '4,2,3')
+      click_button('calc')
+      expect(page).to have_css('body.red')
     end
 
   end
+
 end
 
 
@@ -131,3 +142,14 @@ end
 # The numbers entered should be evaluated by a javascript function called check_increasing
 # If the numbers entered are sorted and ascending the body's background should turn green
 # else the body's background should turn be red
+
+
+
+
+
+
+
+
+
+
+
